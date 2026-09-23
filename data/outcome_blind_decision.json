@@ -1,0 +1,149 @@
+[
+  {
+    "id": "duke-001",
+    "family": "outcome_blind_decision",
+    "primary_construct": ["F1_calibration_bias", "C7_hypothesis_comparison"],
+    "secondary_observation": ["C4_prediction"],
+    "process_lens": ["duke_decision"],
+    "phase": "baseline",
+    "input_modality": "text",
+    "difficulty": {
+      "entity_count": 2,
+      "event_count": 4,
+      "relation_count": 4,
+      "inference_hops": 2,
+      "distractor_count": 0,
+      "irrelevant_information": 0,
+      "lexical_difficulty": 1,
+      "memory_load": 2,
+      "spatial_complexity": 0,
+      "temporal_complexity": 2,
+      "causal_complexity": 2,
+      "perspective_count": 0
+    },
+    "structure_fingerprint": "decision|deadline-route|safer-vs-faster|outcome-reversal",
+    "prompt": {
+      "title": "締切前の配送ルート",
+      "goal": "荷物を16時までに届ける確率をできるだけ高くしたい。",
+      "information": [
+        "ルートA: 通常は50分。過去の同時間帯では16時までに着く割合が82%。",
+        "ルートB: 通常は35分と速いが渋滞変動が大きく、16時までに着く割合は58%。",
+        "今は15時ちょうど。追加の交通情報はない。"
+      ],
+      "choices": [
+        {
+          "id":"A",
+          "label":"ルートAを選ぶ",
+          "outcome":"途中で事故渋滞が発生し、到着は16時08分。締切に遅れた。",
+          "outcome_valence":"bad"
+        },
+        {
+          "id":"B",
+          "label":"ルートBを選ぶ",
+          "outcome":"今日は渋滞がほとんどなく、15時38分に到着。締切に間に合った。",
+          "outcome_valence":"good"
+        }
+      ],
+      "process_reference":"目的が『締切までに着く確率を最大化』なら、判断時点では過去の到着率82%という情報はAを支持します。ただし、Aを選んでも失敗は起こり得ます。結果と判断時点の情報は分けて評価します。"
+    },
+    "response":{"type":"structured","confidence_required":true,"strategy_probe":true}
+  },
+  {
+    "id": "duke-002",
+    "family": "outcome_blind_decision",
+    "primary_construct": ["F1_calibration_bias", "C7_hypothesis_comparison"],
+    "secondary_observation": ["C4_prediction"],
+    "process_lens": ["duke_decision"],
+    "phase": "baseline",
+    "input_modality": "text",
+    "difficulty": {
+      "entity_count": 2,
+      "event_count": 4,
+      "relation_count": 5,
+      "inference_hops": 2,
+      "distractor_count": 0,
+      "irrelevant_information": 0,
+      "lexical_difficulty": 1,
+      "memory_load": 2,
+      "spatial_complexity": 0,
+      "temporal_complexity": 2,
+      "causal_complexity": 2,
+      "perspective_count": 0
+    },
+    "structure_fingerprint": "decision|machine-maintenance|expected-downtime|lucky-unlucky",
+    "prompt": {
+      "title": "工場設備の保守",
+      "goal": "翌日の生産停止時間をできるだけ短くしたい。",
+      "information": [
+        "案A: 今夜20分の予防保守を行う。翌日に重大停止が起きる確率は8%。",
+        "案B: 今夜は保守しない。翌日に重大停止が起きる確率は30%。",
+        "重大停止が起きた場合の平均停止時間は約3時間。"
+      ],
+      "choices": [
+        {
+          "id":"A",
+          "label":"案A: 今夜20分の予防保守をする",
+          "outcome":"予防保守をしたが、翌日に別部品が故障し、2時間40分停止した。",
+          "outcome_valence":"bad"
+        },
+        {
+          "id":"B",
+          "label":"案B: 今夜は保守しない",
+          "outcome":"翌日は偶然トラブルが起きず、停止時間は0分だった。",
+          "outcome_valence":"good"
+        }
+      ],
+      "process_reference":"判断時点では、予防保守に固定20分のコストがある一方、重大停止の確率は8%対30%です。実際に故障したかどうかだけで、事前の判断材料を消さないことが重要です。"
+    },
+    "response":{"type":"structured","confidence_required":true,"strategy_probe":true}
+  },
+  {
+    "id": "duke-003",
+    "family": "outcome_blind_decision",
+    "primary_construct": ["F1_calibration_bias", "C7_hypothesis_comparison"],
+    "secondary_observation": ["C4_prediction"],
+    "process_lens": ["duke_decision"],
+    "phase": "baseline",
+    "input_modality": "text",
+    "difficulty": {
+      "entity_count": 2,
+      "event_count": 4,
+      "relation_count": 5,
+      "inference_hops": 2,
+      "distractor_count": 0,
+      "irrelevant_information": 0,
+      "lexical_difficulty": 1,
+      "memory_load": 2,
+      "spatial_complexity": 0,
+      "temporal_complexity": 2,
+      "causal_complexity": 2,
+      "perspective_count": 0
+    },
+    "structure_fingerprint": "decision|inventory-order|demand-uncertainty|good-bad-outcome",
+    "prompt": {
+      "title": "限定商品の追加発注",
+      "goal": "欠品リスクを抑えつつ、大量の売れ残りも避けたい。",
+      "information": [
+        "案A: 追加で20個発注。需要予測の中央付近で、売れ残りが大きくなる可能性は低め。",
+        "案B: 追加で60個発注。需要が上振れした時の欠品は減るが、通常需要なら40個前後余る見込み。",
+        "追加の宣伝予定や予約急増の情報はない。"
+      ],
+      "choices": [
+        {
+          "id":"A",
+          "label":"案A: 20個追加",
+          "outcome":"発売日に予想外のSNS拡散が起き、夕方には完売。もっと発注していれば追加販売できた。",
+          "outcome_valence":"bad"
+        },
+        {
+          "id":"B",
+          "label":"案B: 60個追加",
+          "outcome":"発売日に予想外のSNS拡散が起き、ほぼ全数売れた。売れ残りはほとんど無かった。",
+          "outcome_valence":"good"
+        }
+      ],
+      "process_reference":"結果として需要が上振れしても、その情報は判断時点では利用できませんでした。結果を見た後に『最初から大量発注が当然だった』と書き換えないかを見ます。"
+    },
+    "response":{"type":"structured","confidence_required":true,"strategy_probe":true}
+  }
+]
