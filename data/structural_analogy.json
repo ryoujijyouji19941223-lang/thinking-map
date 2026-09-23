@@ -1,0 +1,170 @@
+[
+  {
+    "id": "gentner-001",
+    "family": "structural_analogy",
+    "primary_construct": ["B5_abstract_relational_representation", "D4_rule_discovery"],
+    "secondary_observation": ["C5_comparison"],
+    "process_lens": ["gentner_analogy"],
+    "phase": "baseline",
+    "input_modality": "text",
+    "difficulty": {
+      "entity_count": 3,
+      "event_count": 3,
+      "relation_count": 2,
+      "inference_hops": 2,
+      "distractor_count": 2,
+      "irrelevant_information": 0,
+      "lexical_difficulty": 1,
+      "memory_load": 2,
+      "spatial_complexity": 0,
+      "temporal_complexity": 1,
+      "causal_complexity": 2,
+      "perspective_count": 0
+    },
+    "structure_fingerprint": "chain-dependency|A-enables-B-enables-C|3node",
+    "prompt": {
+      "title": "連鎖する前提条件",
+      "base": "研究室では、実験装置を動かす前に安全ロックを解除する必要がある。安全ロックを解除するには、先に管理端末で認証を完了しなければならない。",
+      "question": "見た目ではなく、関係の構造が最も近いものを1つ選んでください。",
+      "choices": [
+        {
+          "id": "A",
+          "text": "倉庫では赤い箱の横に青い箱があり、その横に黄色い箱が置かれている。",
+          "is_correct": false,
+          "surface_note": "3要素が並ぶが、前提条件の連鎖ではない。"
+        },
+        {
+          "id": "B",
+          "text": "オンライン申請では、申請書を送る前に本人確認を終える必要があり、本人確認を始めるには先に確認メールのリンクを開く必要がある。",
+          "is_correct": true,
+          "surface_note": "Xの前にY、Yの前にZという前提条件の連鎖が同じ。"
+        },
+        {
+          "id": "C",
+          "text": "実験室では、装置Aと装置Bのどちらか一方が空いていれば測定を始められる。",
+          "is_correct": false,
+          "surface_note": "実験という表面は似るが、OR条件であり連鎖構造ではない。"
+        }
+      ],
+      "mapping_prompt": "元の話の『管理端末で認証 → 安全ロック解除 → 実験装置を動かす』に対応するものを、選んだ話の中で順番に書いてください。",
+      "reference_mapping": "確認メールのリンクを開く → 本人確認を終える → 申請書を送る"
+    },
+    "response": {
+      "type": "single_choice",
+      "confidence_required": true,
+      "strategy_probe": true
+    }
+  },
+  {
+    "id": "gentner-002",
+    "family": "structural_analogy",
+    "primary_construct": ["B5_abstract_relational_representation", "D4_rule_discovery"],
+    "secondary_observation": ["C5_comparison"],
+    "process_lens": ["gentner_analogy"],
+    "phase": "baseline",
+    "input_modality": "text",
+    "difficulty": {
+      "entity_count": 4,
+      "event_count": 4,
+      "relation_count": 3,
+      "inference_hops": 2,
+      "distractor_count": 2,
+      "irrelevant_information": 0,
+      "lexical_difficulty": 1,
+      "memory_load": 2,
+      "spatial_complexity": 0,
+      "temporal_complexity": 1,
+      "causal_complexity": 2,
+      "perspective_count": 0
+    },
+    "structure_fingerprint": "two-inputs-one-mediator|A+B-to-C-to-D|4node",
+    "prompt": {
+      "title": "2つの入力が1か所に集まる",
+      "base": "農園では、雨水タンクと井戸の両方から水が中央の貯水槽へ送られる。中央の貯水槽から、温室の散水設備へ水が送られる。",
+      "question": "関係の形が最も近いものを選んでください。",
+      "choices": [
+        {
+          "id": "A",
+          "text": "会社では、営業部とサポート部の報告が管理チームに集まり、管理チームがまとめた情報を経営会議へ送る。",
+          "is_correct": true,
+          "surface_note": "2つの入力が1つの中継点へ集まり、そこから次へ渡る構造。"
+        },
+        {
+          "id": "B",
+          "text": "農園では、雨水タンクから畑へ、井戸から温室へ、それぞれ別々に水を送る。",
+          "is_correct": false,
+          "surface_note": "表面は農園で似るが、中央の中継点がない。"
+        },
+        {
+          "id": "C",
+          "text": "会社では、営業部がサポート部へ報告し、サポート部が管理チームへ報告し、管理チームが経営会議へ送る。",
+          "is_correct": false,
+          "surface_note": "会社という表面は近いが、一本の連鎖になっている。"
+        }
+      ],
+      "mapping_prompt": "元の『雨水タンク / 井戸 → 中央の貯水槽 → 温室の散水設備』に対応する要素を書いてください。",
+      "reference_mapping": "営業部 / サポート部 → 管理チーム → 経営会議"
+    },
+    "response": {
+      "type": "single_choice",
+      "confidence_required": true,
+      "strategy_probe": true
+    }
+  },
+  {
+    "id": "gentner-003",
+    "family": "structural_analogy",
+    "primary_construct": ["B5_abstract_relational_representation", "D4_rule_discovery"],
+    "secondary_observation": ["C5_comparison"],
+    "process_lens": ["gentner_analogy"],
+    "phase": "baseline",
+    "input_modality": "text",
+    "difficulty": {
+      "entity_count": 3,
+      "event_count": 3,
+      "relation_count": 3,
+      "inference_hops": 2,
+      "distractor_count": 2,
+      "irrelevant_information": 0,
+      "lexical_difficulty": 1,
+      "memory_load": 2,
+      "spatial_complexity": 0,
+      "temporal_complexity": 1,
+      "causal_complexity": 2,
+      "perspective_count": 0
+    },
+    "structure_fingerprint": "cycle|A-to-B-to-C-to-A|3node",
+    "prompt": {
+      "title": "循環する関係",
+      "base": "村では、製粉所がパン屋へ小麦粉を渡し、パン屋が食堂へパンを渡し、食堂が製粉所の作業員へ食事を提供している。",
+      "question": "関係が一方向の鎖ではなく、最後に最初へ戻る『循環』になっているものを選んでください。",
+      "choices": [
+        {
+          "id": "A",
+          "text": "学校では、先生が生徒へ課題を渡し、生徒が図書室で資料を探し、図書室が先生へ購入希望リストを送る。",
+          "is_correct": true,
+          "surface_note": "先生 → 生徒 → 図書室 → 先生という循環。"
+        },
+        {
+          "id": "B",
+          "text": "町では、製粉所がパン屋へ小麦粉を送り、パン屋が二つの店へパンを配送する。",
+          "is_correct": false,
+          "surface_note": "表面はよく似るが、最後が最初へ戻らない。"
+        },
+        {
+          "id": "C",
+          "text": "学校では、先生が生徒へ課題を渡し、生徒が保護者へ見せ、保護者が学習塾へ相談する。",
+          "is_correct": false,
+          "surface_note": "学校という表面は近いが、一本の鎖。"
+        }
+      ],
+      "mapping_prompt": "元の『製粉所 → パン屋 → 食堂 → 製粉所側』に対応する循環を、選んだ話で書いてください。",
+      "reference_mapping": "先生 → 生徒 → 図書室 → 先生"
+    },
+    "response": {
+      "type": "single_choice",
+      "confidence_required": true,
+      "strategy_probe": true
+    }
+  }
+]
