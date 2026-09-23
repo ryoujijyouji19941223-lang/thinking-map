@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>思考の地図 v3 - Explain Then Re-rate</title>
+  <link rel="stylesheet" href="./src/styles.css">
+</head>
+<body>
+  <main class="app-shell">
+    <header class="topbar">
+      <div>
+        <p class="eyebrow">Thinking Map v3 / Wave 1</p>
+        <h1>Explain Then Re-rate</h1>
+      </div>
+      <div class="header-actions">
+        <a class="ghost link-button" href="./index.html">観察課題へ</a>
+        <button id="resetBtn" class="ghost">記録をリセット</button>
+      </div>
+    </header>
+
+    <section id="intro" class="card">
+      <h2>「分かっている感じ」と「説明できる」を分けて見る</h2>
+      <p>
+        最初に「どのくらい仕組みを理解していると思うか」を答えます。
+        そのあと、仕組みを最初から最後まで説明し、もう一度理解度を答えます。
+      </p>
+      <p class="note">
+        点数を競う課題ではありません。説明しようとした時に、自分の理解の境界がどこに見えるかを記録します。
+      </p>
+      <button id="startBtn" class="primary">始める</button>
+    </section>
+
+    <section id="preRateView" class="hidden">
+      <div class="progress-wrap">
+        <div id="progressText" class="progress-text"></div>
+        <div class="progress-track"><div id="progressBar" class="progress-bar"></div></div>
+      </div>
+      <article class="card">
+        <div class="task-meta">
+          <span id="taskId"></span>
+          <span>理解度の事前評価</span>
+        </div>
+        <h2 id="topicTitle"></h2>
+        <p id="question" class="scenario"></p>
+      </article>
+      <article class="card answer-card">
+        <div class="rating-panel">
+          <label for="preRating">今の時点で、この仕組みをどれくらい説明できると思いますか？</label>
+          <div class="rating-value"><strong><span id="preRatingValue">50</span>%</strong></div>
+          <input id="preRating" type="range" min="0" max="100" step="5" value="50">
+          <div class="scale-labels"><span>ほとんど説明できない</span><span>かなり詳しく説明できる</span></div>
+        </div>
+        <button id="toExplainBtn" class="primary">説明してみる</button>
+      </article>
+    </section>
+
+    <section id="explainView" class="hidden">
+      <article class="card">
+        <div class="task-meta">
+          <span id="explainTaskId"></span>
+          <span>説明</span>
+        </div>
+        <h2 id="explainTitle"></h2>
+        <p id="explainQuestion" class="scenario"></p>
+        <p id="instruction" class="note"></p>
+      </article>
+      <article class="card answer-card">
+        <label for="explanation">仕組みを順番に説明してください</label>
+        <textarea id="explanation" rows="9" placeholder="部品名が分からなくても構いません。『何が起き、そのせいで次に何が起きるか』をできるだけ順番に書いてください。"></textarea>
+
+        <label for="unclear">説明しようとして「ここは分からない」と気づいた部分</label>
+        <textarea id="unclear" rows="4" placeholder="なければ空欄でも構いません。"></textarea>
+
+        <button id="toPostRateBtn" class="primary">説明を確定して、もう一度評価する</button>
+      </article>
+    </section>
+
+    <section id="postRateView" class="hidden">
+      <article class="card">
+        <p class="eyebrow">説明したあと</p>
+        <h2>もう一度、自分の理解度を評価</h2>
+        <div class="rating-panel">
+          <label for="postRating">今なら、この仕組みをどれくらい理解していると思いますか？</label>
+          <div class="rating-value"><strong><span id="postRatingValue">50</span>%</strong></div>
+          <input id="postRating" type="range" min="0" max="100" step="5" value="50">
+          <div class="scale-labels"><span>ほとんど理解していない</span><span>かなり理解している</span></div>
+        </div>
+
+        <label for="whyChanged">最初の評価と変わった場合、何に気づきましたか？</label>
+        <textarea id="whyChanged" rows="4" placeholder="例:途中の仕組みを説明できなかった、思ったより順番を理解していた、など"></textarea>
+
+        <button id="submitBtn" class="primary">この回答を確定</button>
+      </article>
+    </section>
+
+    <section id="reviewView" class="hidden">
+      <article class="card">
+        <p class="eyebrow">回答後の確認</p>
+        <h2 id="reviewTitle"></h2>
+        <div id="ratingDelta" class="summary"></div>
+
+        <h3>あなたの説明</h3>
+        <div id="reviewExplanation" class="review-box tall"></div>
+
+        <h3>説明中に気づいた不明点</h3>
+        <div id="reviewUnclear" class="review-box"></div>
+
+        <details>
+          <summary>一般的な仕組みの要点を見る</summary>
+          <div id="referenceConcepts" class="reference"></div>
+        </details>
+
+        <p id="taskNote" class="note"></p>
+
+        <button id="nextBtn" class="primary">次へ</button>
+      </article>
+    </section>
+
+    <section id="resultView" class="hidden">
+      <article class="card">
+        <p class="eyebrow">今回どうだった？</p>
+        <h2>理解度の自己評価がどう動いたか</h2>
+        <div id="summary" class="summary"></div>
+        <div id="taskBreakdown"></div>
+        <p class="note">
+          評価が下がったから「理解力が低い」という意味ではありません。
+          説明を試みたことで、自分が分かっていない場所を見つけた可能性もあります。
+        </p>
+        <button id="restartBtn" class="primary">もう一度やる</button>
+      </article>
+    </section>
+  </main>
+  <script src="./src/keil.js" defer></script>
+</body>
+</html>
