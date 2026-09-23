@@ -1,0 +1,176 @@
+[
+  {
+    "id": "fim-001",
+    "family": "fact_inference_missing",
+    "primary_construct": ["C6_contradiction_detection", "D6_exception_detection"],
+    "secondary_observation": ["B6_situation_model"],
+    "process_lens": ["herman_observation"],
+    "phase": "baseline",
+    "input_modality": "text",
+    "difficulty": {
+      "entity_count": 2,
+      "event_count": 4,
+      "relation_count": 3,
+      "inference_hops": 1,
+      "distractor_count": 1,
+      "irrelevant_information": 1,
+      "lexical_difficulty": 1,
+      "memory_load": 2,
+      "spatial_complexity": 0,
+      "temporal_complexity": 1,
+      "causal_complexity": 1,
+      "perspective_count": 1
+    },
+    "structure_fingerprint": "shop_close|missing_receipt|2entity|1cause-gap",
+    "prompt": {
+      "scenario": "夕方、商店のシャッターは半分まで下りていた。店主の高橋さんはレジ横の棚を何度も確認していた。\n\n10分前、アルバイトの美咲さんは『今日は青い封筒を見ていません』と話していた。レジの現金額は帳簿と一致していた。店の裏口は閉まっていた。外では雨が降っていた。",
+      "reference": {
+        "facts": [
+          "シャッターが半分まで下りている",
+          "高橋さんがレジ横の棚を何度も確認している",
+          "美咲さんは青い封筒を見ていないと話した",
+          "レジの現金額は帳簿と一致している",
+          "裏口は閉まっている",
+          "外は雨"
+        ],
+        "inference_examples": [
+          "高橋さんは青い封筒を探している可能性がある",
+          "何かが見つからず困っている可能性がある"
+        ],
+        "missing_examples": [
+          "青い封筒が本当に棚に置かれていたのか",
+          "青い封筒の中身は何か",
+          "誰が最後に青い封筒を見たのか",
+          "高橋さんが何を探しているのか"
+        ]
+      }
+    },
+    "response": {
+      "type": "structured",
+      "confidence_required": true,
+      "strategy_probe": true
+    },
+    "scoring": {
+      "max_points": 6,
+      "rubric": "事実・推測・不足情報を別カテゴリに置けているかを中心に見る。自由文の意味評価は将来実装。",
+      "score_strategy_directly": false,
+      "score_experience_directly": false
+    }
+  },
+  {
+    "id": "fim-002",
+    "family": "fact_inference_missing",
+    "primary_construct": ["C6_contradiction_detection", "D6_exception_detection"],
+    "secondary_observation": ["B6_situation_model"],
+    "process_lens": ["herman_observation"],
+    "phase": "baseline",
+    "input_modality": "text",
+    "difficulty": {
+      "entity_count": 3,
+      "event_count": 5,
+      "relation_count": 4,
+      "inference_hops": 1,
+      "distractor_count": 1,
+      "irrelevant_information": 1,
+      "lexical_difficulty": 1,
+      "memory_load": 2,
+      "spatial_complexity": 0,
+      "temporal_complexity": 2,
+      "causal_complexity": 1,
+      "perspective_count": 2
+    },
+    "structure_fingerprint": "meeting_room|late_arrival|missing-cause|3entity",
+    "prompt": {
+      "scenario": "午前9時の会議には、佐藤さんと森さんが先に入室していた。机の中央には資料が5部置かれていた。\n\n9時7分に田中さんが入ってきたが、何も言わず空いている席に座った。田中さんのコートの肩は濡れていた。窓は閉まっており、室内の時計は9時8分を指していた。",
+      "reference": {
+        "facts": [
+          "会議は午前9時",
+          "佐藤さんと森さんが先に入室していた",
+          "資料は5部",
+          "田中さんは9時7分に入室した",
+          "田中さんのコートの肩が濡れていた",
+          "窓は閉まっている",
+          "室内時計は9時8分"
+        ],
+        "inference_examples": [
+          "田中さんは遅刻した可能性がある",
+          "外で雨に濡れた可能性がある"
+        ],
+        "missing_examples": [
+          "田中さんが遅れた理由",
+          "実際に外で雨が降っていたか",
+          "資料5部が誰の分なのか",
+          "時計が正確か"
+        ]
+      }
+    },
+    "response": {
+      "type": "structured",
+      "confidence_required": true,
+      "strategy_probe": true
+    },
+    "scoring": {
+      "max_points": 6,
+      "rubric": "事実・推測・不足情報を別カテゴリに置けているかを中心に見る。自由文の意味評価は将来実装。",
+      "score_strategy_directly": false,
+      "score_experience_directly": false
+    }
+  },
+  {
+    "id": "fim-003",
+    "family": "fact_inference_missing",
+    "primary_construct": ["C6_contradiction_detection", "D6_exception_detection"],
+    "secondary_observation": ["B6_situation_model"],
+    "process_lens": ["herman_observation"],
+    "phase": "baseline",
+    "input_modality": "text",
+    "difficulty": {
+      "entity_count": 2,
+      "event_count": 5,
+      "relation_count": 4,
+      "inference_hops": 2,
+      "distractor_count": 1,
+      "irrelevant_information": 1,
+      "lexical_difficulty": 1,
+      "memory_load": 2,
+      "spatial_complexity": 1,
+      "temporal_complexity": 2,
+      "causal_complexity": 2,
+      "perspective_count": 1
+    },
+    "structure_fingerprint": "workshop|powered_device|missing-action|2entity",
+    "prompt": {
+      "scenario": "工房の作業台に小型の扇風機が置かれていた。電源ランプは点いていたが、羽根は止まっていた。\n\n直前まで作業していた山本さんは『さっきまでは回っていた』と言った。床には延長コードがあり、プラグはコンセントに差さっていた。隣の机には分解用のドライバーが置かれていた。",
+      "reference": {
+        "facts": [
+          "扇風機の電源ランプは点灯",
+          "羽根は停止",
+          "山本さんはさっきまで回っていたと話した",
+          "プラグはコンセントに差さっている",
+          "ドライバーが隣の机にある"
+        ],
+        "inference_examples": [
+          "扇風機に故障が起きた可能性がある",
+          "誰かが扇風機を触った可能性がある"
+        ],
+        "missing_examples": [
+          "スイッチ設定",
+          "モーターの状態",
+          "山本さん以外に触った人がいるか",
+          "ドライバーが扇風機に使われたか"
+        ]
+      }
+    },
+    "response": {
+      "type": "structured",
+      "confidence_required": true,
+      "strategy_probe": true
+    },
+    "scoring": {
+      "max_points": 6,
+      "rubric": "事実・推測・不足情報を別カテゴリに置けているかを中心に見る。自由文の意味評価は将来実装。",
+      "score_strategy_directly": false,
+      "score_experience_directly": false
+    }
+  }
+]
