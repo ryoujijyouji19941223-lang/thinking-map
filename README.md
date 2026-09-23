@@ -69,7 +69,7 @@ v3 は v2 の測定体系を捨てません。
 
 ## 動く試作
 
-Wave 1 の最初の2課題 **Fact / Inference / Missing** と **Explain Then Re-rate** を実装済みです。
+Wave 1 の最初の3課題 **Fact / Inference / Missing**、**Explain Then Re-rate**、**Structural Analogy** を実装済みです。
 
 構成:
 - `index.html`
@@ -79,6 +79,9 @@ Wave 1 の最初の2課題 **Fact / Inference / Missing** と **Explain Then Re-
 - `keil.html`
 - `src/keil.js`
 - `data/explain_then_rerate.json`
+- `gentner.html`
+- `src/gentner.js`
+- `data/structural_analogy.json`
 
 現在は3問入り。
 
@@ -115,3 +118,21 @@ Frank Keil / Leonid Rozenblit の「説明しようとして初めて理解の�
 - ノック式ボールペン
 - 電気ケトルの自動停止
 - 油圧式ドアクローザー
+
+
+### Structural Analogy
+
+Dedre Gentner の Structure-Mapping の考え方を参考に、表面的な類似ではなく「関係構造の対応」を見るオリジナル課題です。
+
+現在は3問:
+- 前提条件の連鎖
+- 2入力→1中継点→出力
+- 循環関係
+
+各問で:
+- 構造が同じ候補を選択
+- 対応関係を自由記述
+- 自信度を記録
+- 使った解き方を自己報告
+
+正答だけでなく、表面類似へ引かれたか、関係構造を意識したかを別々に保存します。
