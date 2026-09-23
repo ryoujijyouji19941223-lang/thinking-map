@@ -1,0 +1,124 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://thinking-map.local/schemas/task.schema.json",
+  "title": "Thinking Map Task",
+  "type": "object",
+  "required": [
+    "id",
+    "family",
+    "primary_construct",
+    "process_lens",
+    "phase",
+    "input_modality",
+    "difficulty",
+    "structure_fingerprint",
+    "response"
+  ],
+  "properties": {
+    "id": { "type": "string", "minLength": 1 },
+    "family": { "type": "string", "minLength": 1 },
+    "primary_construct": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 2,
+      "uniqueItems": true,
+      "items": { "type": "string" }
+    },
+    "secondary_observation": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": { "type": "string" }
+    },
+    "process_lens": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "enum": [
+          "jha_attention",
+          "herman_observation",
+          "tversky_spatial",
+          "gentner_analogy",
+          "keil_understanding",
+          "bjork_learning",
+          "pearl_causality",
+          "galef_belief",
+          "tetlock_forecasting",
+          "duke_decision",
+          "klein_expertise"
+        ]
+      }
+    },
+    "phase": {
+      "enum": ["baseline", "lesson", "practice", "transfer", "delayed"]
+    },
+    "input_modality": {
+      "enum": ["text", "audio", "image", "diagram", "mixed"]
+    },
+    "response": {
+      "type": "object",
+      "required": ["type"],
+      "properties": {
+        "type": {
+          "enum": [
+            "free_text",
+            "single_choice",
+            "multi_choice",
+            "ordering",
+            "placement",
+            "probability",
+            "structured"
+          ]
+        },
+        "confidence_required": { "type": "boolean", "default": true },
+        "strategy_probe": { "type": "boolean", "default": false }
+      },
+      "additionalProperties": true
+    },
+    "difficulty": {
+      "type": "object",
+      "required": [
+        "entity_count",
+        "event_count",
+        "relation_count",
+        "inference_hops",
+        "distractor_count",
+        "memory_load"
+      ],
+      "properties": {
+        "entity_count": { "type": "integer", "minimum": 0 },
+        "event_count": { "type": "integer", "minimum": 0 },
+        "relation_count": { "type": "integer", "minimum": 0 },
+        "inference_hops": { "type": "integer", "minimum": 0 },
+        "distractor_count": { "type": "integer", "minimum": 0 },
+        "irrelevant_information": { "type": "integer", "minimum": 0 },
+        "lexical_difficulty": { "type": "number", "minimum": 0 },
+        "memory_load": { "type": "number", "minimum": 0 },
+        "spatial_complexity": { "type": "number", "minimum": 0 },
+        "temporal_complexity": { "type": "number", "minimum": 0 },
+        "causal_complexity": { "type": "number", "minimum": 0 },
+        "perspective_count": { "type": "integer", "minimum": 0 }
+      },
+      "additionalProperties": false
+    },
+    "structure_fingerprint": {
+      "type": "string",
+      "minLength": 1
+    },
+    "prompt": {
+      "type": "object",
+      "additionalProperties": true
+    },
+    "scoring": {
+      "type": "object",
+      "properties": {
+        "max_points": { "type": "number", "minimum": 0 },
+        "rubric": { "type": "string" },
+        "score_strategy_directly": { "const": false },
+        "score_experience_directly": { "const": false }
+      },
+      "additionalProperties": true
+    }
+  },
+  "additionalProperties": true
+}
