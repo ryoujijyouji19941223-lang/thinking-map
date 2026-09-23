@@ -224,3 +224,63 @@ summary { cursor: pointer; font-weight: 800; }
   .review-grid { grid-template-columns: 1fr; }
   .ghost { align-self: flex-start; }
 }
+
+
+.header-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+}
+
+.link-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+}
+
+.rating-panel {
+  padding: 8px 0 18px;
+}
+
+.rating-panel > label {
+  display: block;
+  font-weight: 800;
+  margin-bottom: 10px;
+}
+
+.rating-value {
+  font-size: 2rem;
+  margin: 6px 0 8px;
+}
+
+.rating-panel input[type="range"] {
+  width: 100%;
+}
+
+.scale-labels {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  color: #667085;
+  font-size: .8rem;
+  margin-top: 5px;
+}
+
+.review-box.tall {
+  min-height: 180px;
+}
+
+@media (max-width: 560px) {
+  .header-actions {
+    width: 100%;
+  }
+  .header-actions .ghost,
+  .header-actions .link-button {
+    flex: 1 1 auto;
+  }
+  .scale-labels {
+    font-size: .72rem;
+  }
+}
