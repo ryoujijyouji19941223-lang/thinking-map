@@ -1,5 +1,16 @@
 # Changelog
 
+## 2026-09-23 — Structural Analogy prototype
+
+- Dedre Gentner 系の構造類推課題を実装
+- オリジナル3問を追加
+- 表面類似の強い誤答候補を各問題に配置
+- 構造一致の選択と対応関係の自由記述を分離
+- 自信度を保存
+- Strategy 自己報告を保存
+- 既存2モジュールとの相互リンクを追加
+
+
 ## 2026-09-23 — Explain Then Re-rate prototype
 
 - Frank Keil / Leonid Rozenblit 系の「説明前→説明→説明後」課題を実装
