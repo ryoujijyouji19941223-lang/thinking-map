@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>思考の地図 v3 - Outcome Blind Decision</title>
+  <link rel="stylesheet" href="./src/styles.css">
+</head>
+<body>
+  <main class="app-shell">
+    <header class="topbar">
+      <div>
+        <p class="eyebrow">Thinking Map v3 / Wave 1</p>
+        <h1>Outcome Blind Decision</h1>
+      </div>
+      <div class="header-actions">
+        <a class="ghost link-button" href="./wave1.html">Wave 1 一覧</a>
+        <button id="resetBtn" class="ghost">記録をリセット</button>
+      </div>
+    </header>
+
+    <section id="intro" class="card">
+      <h2>結果を見る前と、見た後の判断評価を分ける</h2>
+      <p>
+        まず、判断時点で使える情報だけを見て選択します。
+        その判断がどの程度よいと思うかを記録した後、実際の結果を見ます。
+      </p>
+      <p class="note">
+        成功した判断が必ず良い判断とは限らず、失敗した判断が必ず悪い判断とも限りません。そこを人間は結果で上書きしがちです。
+      </p>
+      <button id="startBtn" class="primary">始める</button>
+    </section>
+
+    <section id="decisionView" class="hidden">
+      <div class="progress-wrap">
+        <div id="progressText" class="progress-text"></div>
+        <div class="progress-track"><div id="progressBar" class="progress-bar"></div></div>
+      </div>
+      <article class="card">
+        <div class="task-meta"><span id="taskId"></span><span>結果を見る前</span></div>
+        <h2 id="taskTitle"></h2>
+        <p><strong>目的:</strong> <span id="goal"></span></p>
+        <div id="information" class="scenario"></div>
+      </article>
+      <article class="card answer-card">
+        <h3>どちらを選びますか？</h3>
+        <div id="choiceList" class="choice-list"></div>
+
+        <label for="reason">判断理由</label>
+        <textarea id="reason" rows="4" placeholder="結果はまだ分かりません。今ある情報だけで理由を書いてください。"></textarea>
+
+        <div class="confidence">
+          <label for="preQuality">この判断は、今の情報に照らしてどのくらい良い判断だと思いますか？ <strong><span id="preQualityValue">50</span>%</strong></label>
+          <input id="preQuality" type="range" min="0" max="100" value="50" step="5">
+        </div>
+
+        <button id="showOutcomeBtn" class="primary">判断を固定して、結果を見る</button>
+      </article>
+    </section>
+
+    <section id="outcomeView" class="hidden">
+      <article class="card">
+        <p class="eyebrow">結果</p>
+        <h2 id="outcomeTitle"></h2>
+        <p id="outcomeText" class="scenario"></p>
+      </article>
+      <article class="card answer-card">
+        <div class="confidence">
+          <label for="postQuality">結果を見た今、この判断をどのくらい良い判断だったと思いますか？ <strong><span id="postQualityValue">50</span>%</strong></label>
+          <input id="postQuality" type="range" min="0" max="100" value="50" step="5">
+        </div>
+
+        <label for="postReason">評価を変えた、または変えなかった理由</label>
+        <textarea id="postReason" rows="4"></textarea>
+
+        <button id="submitBtn" class="primary">評価を確定</button>
+      </article>
+    </section>
+
+    <section id="reviewView" class="hidden">
+      <article class="card">
+        <p class="eyebrow">判断と結果を分けて確認</p>
+        <h2 id="reviewTitle"></h2>
+        <div id="qualityDelta" class="summary"></div>
+        <details>
+          <summary>判断時点の情報をもう一度見る</summary>
+          <div id="processReference" class="reference"></div>
+        </details>
+        <button id="nextBtn" class="primary">次へ</button>
+      </article>
+    </section>
+
+    <section id="resultView" class="hidden">
+      <article class="card">
+        <p class="eyebrow">今回どうだった？</p>
+        <h2>結果による評価変化</h2>
+        <div id="summary" class="summary"></div>
+        <div id="taskBreakdown"></div>
+        <p class="note">
+          評価が動いたこと自体を「悪い」とは扱いません。結果に新しい情報が含まれる場合もあります。
+          この試作では、結果の良し悪しに引っぱられて判断時点の評価までどの程度動いたかを記録します。
+        </p>
+        <button id="restartBtn" class="primary">もう一度やる</button>
+      </article>
+    </section>
+  </main>
+  <script src="./src/duke.js" defer></script>
+</body>
+</html>
