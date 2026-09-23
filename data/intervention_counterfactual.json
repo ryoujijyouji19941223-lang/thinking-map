@@ -1,0 +1,188 @@
+[
+  {
+    "id": "pearl-001",
+    "family": "intervention_counterfactual",
+    "primary_construct": ["C1_causal_reasoning"],
+    "secondary_observation": ["C7_hypothesis_comparison"],
+    "process_lens": ["pearl_causality"],
+    "phase": "baseline",
+    "input_modality": "text",
+    "difficulty": {
+      "entity_count": 4,
+      "event_count": 4,
+      "relation_count": 4,
+      "inference_hops": 2,
+      "distractor_count": 2,
+      "irrelevant_information": 0,
+      "lexical_difficulty": 1,
+      "memory_load": 2,
+      "spatial_complexity": 0,
+      "temporal_complexity": 1,
+      "causal_complexity": 2,
+      "perspective_count": 0
+    },
+    "structure_fingerprint": "common-cause|weather-to-visitors-and-drinks|intervention-not-implied",
+    "prompt": {
+      "title": "売店の冷たい飲み物",
+      "model": "暑い日は公園の来園者が増え、同時に冷たい飲み物も売れやすくなる。店長は『来園者が多い日に冷たい飲み物の売上も高い』という記録を見つけた。",
+      "questions": [
+        {
+          "kind": "observation",
+          "label": "観察",
+          "text": "この記録だけから、何が言えますか？",
+          "choices": [
+            {"id":"A","text":"来園者が増えることが、冷たい飲み物の売上を直接増やすと証明された","is_correct":false},
+            {"id":"B","text":"来園者数と冷たい飲み物の売上には関連があるが、この記録だけでは直接の因果は確定しない","is_correct":true},
+            {"id":"C","text":"冷たい飲み物の売上が増えると、来園者が増えると証明された","is_correct":false}
+          ]
+        },
+        {
+          "kind": "intervention",
+          "label": "介入",
+          "text": "店側が広告で来園者数だけを増やせたとします。冷たい飲み物の売上が必ず同じ割合で増えると言えますか？",
+          "choices": [
+            {"id":"A","text":"必ず言える","is_correct":false},
+            {"id":"B","text":"元の観察記録だけでは言えない","is_correct":true},
+            {"id":"C","text":"必ず下がる","is_correct":false}
+          ]
+        },
+        {
+          "kind": "counterfactual",
+          "label": "反実仮想",
+          "text": "ある暑い日に来園者も売上も多かったとします。その日が暑くなかった場合でも、同じ売上だったかを元の記録だけで断定できますか？",
+          "choices": [
+            {"id":"A","text":"断定できる","is_correct":false},
+            {"id":"B","text":"断定できない","is_correct":true},
+            {"id":"C","text":"必ず売上はゼロになる","is_correct":false}
+          ]
+        }
+      ],
+      "explanation": "暑さという共通要因が来園者数と冷たい飲み物の売上の両方に影響しているため、観察された関連だけでは『来園者を増やせば売上が同じように増える』とは確定できません。"
+    },
+    "response": {"type":"structured","confidence_required":true,"strategy_probe":true}
+  },
+  {
+    "id": "pearl-002",
+    "family": "intervention_counterfactual",
+    "primary_construct": ["C1_causal_reasoning"],
+    "secondary_observation": ["C7_hypothesis_comparison"],
+    "process_lens": ["pearl_causality"],
+    "phase": "baseline",
+    "input_modality": "text",
+    "difficulty": {
+      "entity_count": 4,
+      "event_count": 5,
+      "relation_count": 4,
+      "inference_hops": 2,
+      "distractor_count": 2,
+      "irrelevant_information": 0,
+      "lexical_difficulty": 1,
+      "memory_load": 2,
+      "spatial_complexity": 0,
+      "temporal_complexity": 2,
+      "causal_complexity": 2,
+      "perspective_count": 0
+    },
+    "structure_fingerprint": "direct-cause|switch-to-pump-to-water|controlled-intervention",
+    "prompt": {
+      "title": "温室の散水ポンプ",
+      "model": "温室では、散水スイッチを入れるとポンプへ電気が流れ、正常なポンプなら配管へ水を送る。今日は電源も配管も正常だと確認されている。",
+      "questions": [
+        {
+          "kind": "observation",
+          "label": "観察",
+          "text": "過去の記録で『スイッチが入っていた時は散水していることが多い』と分かりました。これだけなら何が言えますか？",
+          "choices": [
+            {"id":"A","text":"スイッチと散水には関連が見られる","is_correct":true},
+            {"id":"B","text":"ポンプ故障は絶対に起きない","is_correct":false},
+            {"id":"C","text":"散水が先に起きてスイッチを入れる","is_correct":false}
+          ]
+        },
+        {
+          "kind": "intervention",
+          "label": "介入",
+          "text": "今日、正常な条件のまま人がスイッチを入れたら、モデル上は何が起きると考えられますか？",
+          "choices": [
+            {"id":"A","text":"ポンプへ電気が流れ、散水へつながる","is_correct":true},
+            {"id":"B","text":"何も推測できない","is_correct":false},
+            {"id":"C","text":"必ず配管が壊れる","is_correct":false}
+          ]
+        },
+        {
+          "kind": "counterfactual",
+          "label": "反実仮想",
+          "text": "実際には今日スイッチを入れて散水したとします。もし同じ条件でスイッチを入れなかったなら、モデル上はどう考えますか？",
+          "choices": [
+            {"id":"A","text":"その経路ではポンプへ電気が流れず、散水は起きないと考える","is_correct":true},
+            {"id":"B","text":"必ず同じ散水が起きる","is_correct":false},
+            {"id":"C","text":"スイッチを入れなくてもポンプ故障が確定する","is_correct":false}
+          ]
+        }
+      ],
+      "explanation": "この課題では因果モデルが明示されています。観察だけの関連とは違い、正常条件のもとでスイッチを操作する介入が、その後のポンプと散水へつながると推論できます。"
+    },
+    "response": {"type":"structured","confidence_required":true,"strategy_probe":true}
+  },
+  {
+    "id": "pearl-003",
+    "family": "intervention_counterfactual",
+    "primary_construct": ["C1_causal_reasoning"],
+    "secondary_observation": ["C7_hypothesis_comparison"],
+    "process_lens": ["pearl_causality"],
+    "phase": "baseline",
+    "input_modality": "text",
+    "difficulty": {
+      "entity_count": 5,
+      "event_count": 5,
+      "relation_count": 5,
+      "inference_hops": 2,
+      "distractor_count": 2,
+      "irrelevant_information": 0,
+      "lexical_difficulty": 1,
+      "memory_load": 2,
+      "spatial_complexity": 0,
+      "temporal_complexity": 2,
+      "causal_complexity": 3,
+      "perspective_count": 0
+    },
+    "structure_fingerprint": "selection-bias|urgent-orders-to-more-staff-and-delays|severity-confound",
+    "prompt": {
+      "title": "配送センターの増員",
+      "model": "配送センターでは、注文が急増した日に臨時スタッフを増員する。同じような急増日には、処理待ちも長くなりやすい。記録を見ると『スタッフを増やした日は平均待ち時間も長い』。",
+      "questions": [
+        {
+          "kind": "observation",
+          "label": "観察",
+          "text": "この記録だけを見て『増員すると待ち時間が長くなる』と結論してよいですか？",
+          "choices": [
+            {"id":"A","text":"よい。相関があるので増員が原因だ","is_correct":false},
+            {"id":"B","text":"まだ言えない。注文急増が増員と待ち時間の両方に関係している可能性がある","is_correct":true},
+            {"id":"C","text":"増員すれば必ず待ち時間はゼロになる","is_correct":false}
+          ]
+        },
+        {
+          "kind": "intervention",
+          "label": "介入",
+          "text": "同じ注文量の日を多数用意し、無作為に『増員する日』と『増員しない日』へ分けて比較できたら、何を調べやすくなりますか？",
+          "choices": [
+            {"id":"A","text":"増員そのものが待ち時間に与える効果","is_correct":true},
+            {"id":"B","text":"注文量が多い日の曜日だけ","is_correct":false},
+            {"id":"C","text":"スタッフの名前と待ち時間の関係だけ","is_correct":false}
+          ]
+        },
+        {
+          "kind": "counterfactual",
+          "label": "反実仮想",
+          "text": "昨日は注文が急増し、増員しても待ち時間が40分でした。『増員しなかったら何分だったか』を昨日の実績だけから正確に知れますか？",
+          "choices": [
+            {"id":"A","text":"正確に知れる","is_correct":false},
+            {"id":"B","text":"正確には観察できない。比較設計や因果モデルが必要","is_correct":true},
+            {"id":"C","text":"必ず40分のまま","is_correct":false}
+          ]
+        }
+      ],
+      "explanation": "増員は問題が大きい日に選ばれやすいため、単純比較では増員の効果と注文急増の影響が混ざります。同程度の注文量で介入を比較すると、増員そのものの効果を分けて考えやすくなります。"
+    },
+    "response": {"type":"structured","confidence_required":true,"strategy_probe":true}
+  }
+]
