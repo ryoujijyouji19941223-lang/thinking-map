@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>思考の地図 v3 - Observation / Intervention / Counterfactual</title>
+  <link rel="stylesheet" href="./src/styles.css">
+</head>
+<body>
+  <main class="app-shell">
+    <header class="topbar">
+      <div>
+        <p class="eyebrow">Thinking Map v3 / Wave 1</p>
+        <h1>Observation / Intervention / Counterfactual</h1>
+      </div>
+      <div class="header-actions">
+        <a class="ghost link-button" href="./wave1.html">Wave 1 一覧</a>
+        <button id="resetBtn" class="ghost">記録をリセット</button>
+      </div>
+    </header>
+
+    <section id="intro" class="card">
+      <h2>「一緒に起きた」「変えてみる」「もし違っていたら」を分ける</h2>
+      <p>
+        同じ状況について、<strong>観察</strong>、<strong>介入</strong>、<strong>反実仮想</strong>の3種類の問いに答えます。
+      </p>
+      <p class="note">因果を断定できる情報と、まだ足りない情報を分けるための試作です。</p>
+      <button id="startBtn" class="primary">始める</button>
+    </section>
+
+    <section id="taskView" class="hidden">
+      <div class="progress-wrap">
+        <div id="progressText" class="progress-text"></div>
+        <div class="progress-track"><div id="progressBar" class="progress-bar"></div></div>
+      </div>
+      <article class="card">
+        <div class="task-meta"><span id="taskId"></span><span id="questionKind"></span></div>
+        <h2 id="taskTitle"></h2>
+        <p id="modelText" class="scenario"></p>
+      </article>
+      <article class="card answer-card">
+        <h3 id="questionText"></h3>
+        <div id="choiceList" class="choice-list"></div>
+        <div class="confidence">
+          <label for="confidence">この回答への自信 <strong><span id="confidenceValue">50</span>%</strong></label>
+          <input id="confidence" type="range" min="0" max="100" value="50" step="5">
+        </div>
+        <label for="reason">そう考えた理由</label>
+        <textarea id="reason" rows="4" placeholder="どの情報を根拠にしたかを書いてください。"></textarea>
+        <button id="submitBtn" class="primary">回答を確定</button>
+      </article>
+    </section>
+
+    <section id="reviewView" class="hidden">
+      <article class="card">
+        <p class="eyebrow">3種類の問いを回答済み</p>
+        <h2 id="reviewTitle"></h2>
+        <div id="reviewRows"></div>
+        <details>
+          <summary>この問題の因果ポイントを見る</summary>
+          <div id="explanation" class="reference"></div>
+        </details>
+        <button id="nextBtn" class="primary">次へ</button>
+      </article>
+    </section>
+
+    <section id="resultView" class="hidden">
+      <article class="card">
+        <p class="eyebrow">今回どうだった？</p>
+        <h2>因果推論の試作結果</h2>
+        <div id="summary" class="summary"></div>
+        <div id="taskBreakdown"></div>
+        <p class="note">
+          この3問だけから「因果推論能力」を固定的に判定しません。
+          観察・介入・反実仮想で回答がどう変わったかを記録します。
+        </p>
+        <button id="restartBtn" class="primary">もう一度やる</button>
+      </article>
+    </section>
+  </main>
+  <script src="./src/pearl.js" defer></script>
+</body>
+</html>
