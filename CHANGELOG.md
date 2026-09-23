@@ -1,5 +1,16 @@
 # Changelog
 
+## 2026-09-23 — Wave 1 six-module prototype complete
+
+- Judea Pearl 系の因果推論モジュールを実装
+- Philip Tetlock 系の確率更新モジュールを実装
+- Annie Duke 系の結果バイアス / 意思決定モジュールを実装
+- Wave 1 の6モジュールを一覧表示するトップページを作成
+- Fact / Inference / Missing を herman.html へ移動
+- 全モジュールからトップへ戻れる導線に統一
+- Probability Update 用UIを追加
+- 次工程をプレイテスト / デバッグに設定
+
 ## 2026-09-23 — Structural Analogy prototype
 
 - Dedre Gentner 系の構造類推課題を実装
