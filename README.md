@@ -69,13 +69,16 @@ v3 は v2 の測定体系を捨てません。
 
 ## 動く試作
 
-Wave 1 の最初の課題 **Fact / Inference / Missing** を実装済みです。
+Wave 1 の最初の2課題 **Fact / Inference / Missing** と **Explain Then Re-rate** を実装済みです。
 
 構成:
 - `index.html`
 - `src/styles.css`
 - `src/app.js`
 - `data/fact_inference_missing.json`
+- `keil.html`
+- `src/keil.js`
+- `data/explain_then_rerate.json`
 
 現在は3問入り。
 
@@ -95,3 +98,20 @@ Wave 1 の最初の課題 **Fact / Inference / Missing** を実装済みです�
 自由文の採点は、まだ簡易的な文字列一致です。
 そのため、意味が同じ言い換えを正しく評価できない場合があります。
 現段階では「採点器」より、入力フロー・保存形式・結果表示を一本通して検証するための試作です。
+
+
+### Explain Then Re-rate
+
+Frank Keil / Leonid Rozenblit の「説明しようとして初めて理解の空白に気づく」という発想を、オリジナル課題へ変換した試作です。
+
+流れ:
+1. 説明前の理解度を 0–100% で自己評価
+2. 仕組みを最初から最後まで自由説明
+3. 分からなかった箇所を自己申告
+4. 説明後に理解度を再評価
+5. 事前/事後の差を結果表示
+
+現在は3問:
+- ノック式ボールペン
+- 電気ケトルの自動停止
+- 油圧式ドアクローザー
