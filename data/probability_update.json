@@ -1,0 +1,116 @@
+[
+  {
+    "id": "tetlock-001",
+    "family": "probability_update",
+    "primary_construct": ["C4_prediction", "F2_calibration_accuracy"],
+    "secondary_observation": ["C7_hypothesis_comparison"],
+    "process_lens": ["tetlock_forecasting"],
+    "phase": "baseline",
+    "input_modality": "text",
+    "difficulty": {
+      "entity_count": 3,
+      "event_count": 4,
+      "relation_count": 4,
+      "inference_hops": 2,
+      "distractor_count": 0,
+      "irrelevant_information": 0,
+      "lexical_difficulty": 1,
+      "memory_load": 2,
+      "spatial_complexity": 0,
+      "temporal_complexity": 2,
+      "causal_complexity": 2,
+      "perspective_count": 0
+    },
+    "structure_fingerprint": "3hypotheses|software-outage|rollback-evidence",
+    "prompt": {
+      "title": "Webサービスの障害",
+      "initial": "午前10時、社内Webサービスに接続しにくくなった。10分前に新しいアプリ更新が配布されていた。ネットワーク監視には小さな遅延も出ているが、停電警報は出ていない。",
+      "hypotheses": [
+        {"id":"A","label":"アプリ更新の不具合"},
+        {"id":"B","label":"ネットワーク障害"},
+        {"id":"C","label":"電源系の障害"}
+      ],
+      "new_evidence": "更新を元の版へ戻した直後、接続エラーの大部分が消えた。ネットワークの小さな遅延は残っている。",
+      "expected_direction": {"A":"up","B":"down_or_same","C":"down_or_same"},
+      "focus_hypothesis": "A",
+      "explanation": "ロールバック直後に主要な症状が改善したことは、アプリ更新原因の可能性を上げる証拠です。ただし他原因が完全にゼロになったと断定する必要はありません。"
+    },
+    "response": {"type":"probability","confidence_required":false,"strategy_probe":true}
+  },
+  {
+    "id": "tetlock-002",
+    "family": "probability_update",
+    "primary_construct": ["C4_prediction", "F2_calibration_accuracy"],
+    "secondary_observation": ["C7_hypothesis_comparison"],
+    "process_lens": ["tetlock_forecasting"],
+    "phase": "baseline",
+    "input_modality": "text",
+    "difficulty": {
+      "entity_count": 3,
+      "event_count": 4,
+      "relation_count": 4,
+      "inference_hops": 2,
+      "distractor_count": 0,
+      "irrelevant_information": 0,
+      "lexical_difficulty": 1,
+      "memory_load": 2,
+      "spatial_complexity": 1,
+      "temporal_complexity": 2,
+      "causal_complexity": 2,
+      "perspective_count": 0
+    },
+    "structure_fingerprint": "3hypotheses|missing-parcel|locker-log-evidence",
+    "prompt": {
+      "title": "宅配ロッカーに無い荷物",
+      "initial": "配達通知には『14時ごろ宅配ロッカーへ配達完了』とあるが、帰宅した住人がロッカーを開くと荷物が無かった。建物には共用ロッカー、管理室、置き配スペースがある。",
+      "hypotheses": [
+        {"id":"A","label":"別のロッカー番号へ誤配"},
+        {"id":"B","label":"配達完了の記録だけ先に付いた"},
+        {"id":"C","label":"管理室へ移された"}
+      ],
+      "new_evidence": "ロッカー管理ログには14時03分に配達員用キーで別番号の扉が開かれ、その区画には現在荷物が入っていると記録されている。",
+      "expected_direction": {"A":"up","B":"down","C":"down"},
+      "focus_hypothesis": "A",
+      "explanation": "別番号のロッカーが配達時刻に開かれ、現在も荷物を検知しているため、誤配仮説を強く上げる方向の証拠です。"
+    },
+    "response": {"type":"probability","confidence_required":false,"strategy_probe":true}
+  },
+  {
+    "id": "tetlock-003",
+    "family": "probability_update",
+    "primary_construct": ["C4_prediction", "F2_calibration_accuracy"],
+    "secondary_observation": ["C7_hypothesis_comparison"],
+    "process_lens": ["tetlock_forecasting"],
+    "phase": "baseline",
+    "input_modality": "text",
+    "difficulty": {
+      "entity_count": 3,
+      "event_count": 5,
+      "relation_count": 5,
+      "inference_hops": 2,
+      "distractor_count": 0,
+      "irrelevant_information": 0,
+      "lexical_difficulty": 1,
+      "memory_load": 2,
+      "spatial_complexity": 0,
+      "temporal_complexity": 2,
+      "causal_complexity": 3,
+      "perspective_count": 0
+    },
+    "structure_fingerprint": "3hypotheses|plant-wilt|wet-soil-root-evidence",
+    "prompt": {
+      "title": "温室の苗がしおれた",
+      "initial": "温室の苗が数日でしおれ始めた。最近は気温が高めで、担当者は毎朝水やりをしている。葉には大きな食害跡は見当たらない。",
+      "hypotheses": [
+        {"id":"A","label":"水不足"},
+        {"id":"B","label":"根の傷み・過湿"},
+        {"id":"C","label":"高温によるストレス"}
+      ],
+      "new_evidence": "土壌センサーを見ると3日間ずっと水分量が高く、1株を抜くと根の一部が茶色く柔らかくなっていた。",
+      "expected_direction": {"A":"down","B":"up","C":"down_or_same"},
+      "focus_hypothesis": "B",
+      "explanation": "高い土壌水分と根の傷みは、単純な水不足より根の傷み・過湿仮説を上げる方向の証拠です。高温の影響が完全に否定されたわけではありません。"
+    },
+    "response": {"type":"probability","confidence_required":false,"strategy_probe":true}
+  }
+]
