@@ -3,130 +3,67 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>思考の地図 v3 Prototype</title>
+  <title>思考の地図 v3 - Wave 1</title>
   <link rel="stylesheet" href="./src/styles.css">
 </head>
 <body>
   <main class="app-shell">
     <header class="topbar">
       <div>
-        <p class="eyebrow">Thinking Map v3 / Wave 1</p>
-        <h1>Fact / Inference / Missing</h1>
-      </div>
-      <div class="header-actions">
-        <a class="ghost link-button" href="./keil.html">理解の境界課題</a>
-        <a class="ghost link-button" href="./gentner.html">構造類推課題</a>
-        <button id="resetBtn" class="ghost">記録をリセット</button>
+        <p class="eyebrow">Thinking Map v3</p>
+        <h1>Wave 1 試作一覧</h1>
       </div>
     </header>
 
-    <section id="intro" class="card">
-      <h2>この試作で見るもの</h2>
-      <p>
-        同じ場面について、<strong>書かれている事実</strong>、
-        <strong>そこから考えたこと</strong>、
-        <strong>まだ分からないこと・欠けている情報</strong>
-        を分けて答えます。
-      </p>
-      <p class="note">
-        これは心理診断ではありません。今回の課題条件で、どんな分け方をしたかを記録します。
-      </p>
-      <button id="startBtn" class="primary">始める</button>
+    <section class="card">
+      <h2>6種類の思考課題</h2>
+      <p>v3 の最初の実装セットです。各モジュールは別々に記録されます。ここでは診断や固定タイプ判定は行いません。</p>
+      <p class="note">まず全部を一度通し、その後に問題文・UI・採点・結果表示をまとめてデバッグする前提の試作です。</p>
     </section>
 
-    <section id="taskView" class="hidden">
-      <div class="progress-wrap" aria-label="進行状況">
-        <div id="progressText" class="progress-text"></div>
-        <div class="progress-track"><div id="progressBar" class="progress-bar"></div></div>
-      </div>
-
-      <article class="card">
-        <div class="task-meta">
-          <span id="taskId"></span>
-          <span id="taskMode"></span>
-        </div>
-        <h2>場面</h2>
-        <p id="scenario" class="scenario"></p>
-      </article>
-
-      <article class="card answer-card">
-        <label for="facts">
-          <span class="step-badge">1</span>
-          実際に書かれている事実
-        </label>
-        <textarea id="facts" rows="5" placeholder="推測ではなく、文章から確認できることだけを書いてください。"></textarea>
-
-        <label for="inferences">
-          <span class="step-badge">2</span>
-          そこから考えたこと・推測
-        </label>
-        <textarea id="inferences" rows="5" placeholder="原因、意図、可能性など、文章から考えたことを書いてください。"></textarea>
-
-        <label for="missing">
-          <span class="step-badge">3</span>
-          まだ分からないこと・欠けている情報
-        </label>
-        <textarea id="missing" rows="5" placeholder="判断するには足りない情報、本来ありそうなのに書かれていない情報を書いてください。"></textarea>
-
-        <div class="confidence">
-          <label for="confidence">この回答への自信 <strong><span id="confidenceValue">50</span>%</strong></label>
-          <input id="confidence" type="range" min="0" max="100" value="50" step="5">
-        </div>
-
-        <button id="submitBtn" class="primary">この回答を確定</button>
-      </article>
+    <section class="module-grid">
+      <a class="module-card" href="./herman.html">
+        <span class="module-number">01</span>
+        <h2>Fact / Inference / Missing</h2>
+        <p>事実・推測・不足情報を分ける。</p>
+        <span class="module-meta">Amy Herman / 観察</span>
+      </a>
+      <a class="module-card" href="./keil.html">
+        <span class="module-number">02</span>
+        <h2>Explain Then Re-rate</h2>
+        <p>説明前後で「分かっている感覚」がどう変わるか。</p>
+        <span class="module-meta">Frank Keil / 理解の自己評価</span>
+      </a>
+      <a class="module-card" href="./gentner.html">
+        <span class="module-number">03</span>
+        <h2>Structural Analogy</h2>
+        <p>見た目ではなく関係構造の一致を探す。</p>
+        <span class="module-meta">Dedre Gentner / 類推</span>
+      </a>
+      <a class="module-card" href="./pearl.html">
+        <span class="module-number">04</span>
+        <h2>Observation / Intervention / Counterfactual</h2>
+        <p>観察・介入・反実仮想を区別する。</p>
+        <span class="module-meta">Judea Pearl / 因果推論</span>
+      </a>
+      <a class="module-card" href="./tetlock.html">
+        <span class="module-number">05</span>
+        <h2>Probability Update</h2>
+        <p>仮説に確率を割り当て、新情報で更新する。</p>
+        <span class="module-meta">Philip Tetlock / 予測・更新</span>
+      </a>
+      <a class="module-card" href="./duke.html">
+        <span class="module-number">06</span>
+        <h2>Outcome Blind Decision</h2>
+        <p>結果を見る前後で判断品質の評価がどう動くか。</p>
+        <span class="module-meta">Annie Duke / 意思決定</span>
+      </a>
     </section>
 
-    <section id="reviewView" class="hidden">
-      <article class="card">
-        <p class="eyebrow">回答後の確認</p>
-        <h2>どう分けたかを見返す</h2>
-        <p id="reviewScenario" class="scenario"></p>
-
-        <div class="review-grid">
-          <div>
-            <h3>あなたの「事実」</h3>
-            <div id="reviewFacts" class="review-box"></div>
-          </div>
-          <div>
-            <h3>あなたの「推測」</h3>
-            <div id="reviewInferences" class="review-box"></div>
-          </div>
-          <div>
-            <h3>あなたの「不足情報」</h3>
-            <div id="reviewMissing" class="review-box"></div>
-          </div>
-        </div>
-
-        <details>
-          <summary>この問題で最低限確認できるポイント</summary>
-          <div id="referencePoints" class="reference"></div>
-        </details>
-
-        <div class="strategy-block">
-          <p>答えるとき、近かったものを選んでください。</p>
-          <div id="strategyChoices" class="chip-row"></div>
-        </div>
-
-        <button id="nextBtn" class="primary">次へ</button>
-      </article>
-    </section>
-
-    <section id="resultView" class="hidden">
-      <article class="card">
-        <p class="eyebrow">今回どうだった？</p>
-        <h2>試作結果</h2>
-        <div id="summary" class="summary"></div>
-        <div id="taskBreakdown"></div>
-        <p class="note">
-          この結果は「観察力○点」のような固定能力判定ではありません。
-          今回の3課題で、事実・推測・不足情報をどう分けたかの記録です。
-        </p>
-        <button id="restartBtn" class="primary">もう一度やる</button>
-      </article>
+    <section class="card">
+      <h2>次工程</h2>
+      <p>6種類を実際に通して、難易度、誘導、選択肢、自由回答、採点、結果文、スマホ操作をまとめてデバッグします。</p>
     </section>
   </main>
-
-  <script src="./src/app.js" defer></script>
 </body>
 </html>
