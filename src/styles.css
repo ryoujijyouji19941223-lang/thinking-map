@@ -1,0 +1,226 @@
+:root {
+  font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  color: #1f2530;
+  background: #f5f7fb;
+  line-height: 1.65;
+  color-scheme: light;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background:
+    radial-gradient(circle at top left, rgba(90, 116, 255, 0.10), transparent 35%),
+    #f5f7fb;
+}
+
+button, textarea, input { font: inherit; }
+
+button { cursor: pointer; }
+
+.app-shell {
+  width: min(920px, calc(100% - 28px));
+  margin: 0 auto;
+  padding: 30px 0 72px;
+}
+
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px;
+  margin-bottom: 22px;
+}
+
+h1, h2, h3, p { margin-top: 0; }
+h1 { font-size: clamp(1.7rem, 4vw, 2.5rem); margin-bottom: 0; }
+h2 { font-size: 1.35rem; }
+h3 { font-size: 1rem; margin-bottom: 8px; }
+
+.eyebrow {
+  margin-bottom: 4px;
+  font-size: .78rem;
+  font-weight: 800;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: #596274;
+}
+
+.card {
+  background: rgba(255,255,255,.94);
+  border: 1px solid #e2e7f0;
+  border-radius: 18px;
+  padding: clamp(20px, 4vw, 34px);
+  box-shadow: 0 14px 36px rgba(42, 52, 74, .07);
+  margin-bottom: 18px;
+}
+
+.note {
+  color: #667085;
+  font-size: .93rem;
+}
+
+.primary, .ghost {
+  border-radius: 12px;
+  min-height: 46px;
+  padding: 10px 18px;
+  font-weight: 700;
+}
+
+.primary {
+  border: 0;
+  background: #2c45d8;
+  color: white;
+}
+
+.primary:hover { filter: brightness(.96); }
+
+.ghost {
+  background: transparent;
+  color: #5b6475;
+  border: 1px solid #d8deea;
+}
+
+.hidden { display: none !important; }
+
+.progress-wrap { margin: 4px 0 16px; }
+.progress-text { font-size: .9rem; color: #667085; margin-bottom: 6px; }
+.progress-track {
+  height: 8px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: #e6eaf2;
+}
+.progress-bar {
+  height: 100%;
+  width: 0;
+  background: #2c45d8;
+  transition: width .2s ease;
+}
+
+.task-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  font-size: .78rem;
+  color: #667085;
+}
+
+.task-meta span {
+  border: 1px solid #e1e6ef;
+  padding: 4px 8px;
+  border-radius: 999px;
+}
+
+.scenario {
+  white-space: pre-wrap;
+  font-size: 1.04rem;
+  background: #f7f8fc;
+  border: 1px solid #e5e9f2;
+  border-radius: 14px;
+  padding: 18px;
+  margin-bottom: 0;
+}
+
+.answer-card label {
+  display: block;
+  font-weight: 800;
+  margin: 18px 0 8px;
+}
+
+.answer-card label:first-child { margin-top: 0; }
+
+.step-badge {
+  display: inline-grid;
+  place-items: center;
+  width: 26px;
+  height: 26px;
+  margin-right: 6px;
+  border-radius: 50%;
+  background: #edf0ff;
+  color: #2c45d8;
+  font-size: .8rem;
+}
+
+textarea {
+  width: 100%;
+  resize: vertical;
+  border: 1px solid #cfd6e4;
+  border-radius: 12px;
+  padding: 12px;
+  background: #fff;
+}
+
+textarea:focus, input:focus {
+  outline: 3px solid rgba(44, 69, 216, .15);
+  border-color: #2c45d8;
+}
+
+.confidence {
+  padding: 18px 0;
+}
+.confidence input { width: 100%; }
+
+.review-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin: 18px 0;
+}
+
+.review-box {
+  min-height: 120px;
+  white-space: pre-wrap;
+  background: #f8f9fc;
+  border: 1px solid #e3e7ef;
+  border-radius: 12px;
+  padding: 12px;
+}
+
+details {
+  border-top: 1px solid #e7eaf1;
+  border-bottom: 1px solid #e7eaf1;
+  padding: 14px 0;
+  margin: 20px 0;
+}
+summary { cursor: pointer; font-weight: 800; }
+.reference { margin-top: 10px; color: #475467; }
+
+.chip-row {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.chip {
+  border: 1px solid #cfd6e4;
+  border-radius: 999px;
+  padding: 8px 12px;
+  background: white;
+}
+.chip.selected {
+  border-color: #2c45d8;
+  background: #edf0ff;
+  color: #2438b3;
+}
+
+.summary {
+  padding: 16px;
+  border-radius: 14px;
+  background: #f7f8fc;
+  margin-bottom: 18px;
+}
+
+.result-row {
+  border-top: 1px solid #e7eaf1;
+  padding: 16px 0;
+}
+.result-row:first-child { border-top: 0; }
+
+.muted { color: #667085; }
+
+@media (max-width: 720px) {
+  .topbar { flex-direction: column; }
+  .review-grid { grid-template-columns: 1fr; }
+  .ghost { align-self: flex-start; }
+}
