@@ -1,5 +1,17 @@
 # Changelog
 
+## 2026-09-23 — Explain Then Re-rate prototype
+
+- Frank Keil / Leonid Rozenblit 系の「説明前→説明→説明後」課題を実装
+- オリジナル3問を追加
+- 事前理解度 0–100 を記録
+- 自由説明と「分からなかった箇所」を保存
+- 事後理解度 0–100 を記録
+- rating_delta を保存
+- 平均の事前/事後変化を結果表示
+- Fact / Inference / Missing と相互に移動できるリンクを追加
+
+
 ## 2026-09-23 — first interactive prototype
 
 - Wave 1: Fact / Inference / Missing を実装
