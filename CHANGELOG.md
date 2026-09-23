@@ -1,5 +1,18 @@
 # Changelog
 
+## 2026-09-23 — first interactive prototype
+
+- Wave 1: Fact / Inference / Missing を実装
+- オリジナル問題3問を追加
+- 事実 / 推測 / 不足情報を別入力欄として実装
+- 自信度 0–100 を記録
+- Strategy 自己報告を追加
+- localStorage にセッション保存
+- 試作結果画面を追加
+- task.schema.json と問題データの必須項目を検証
+- app.js の構文チェックを実施
+- 自由文採点は暫定的な文字列一致であり、本番用ではないことを明記
+
 ## 2026-09-23 — v2/v3 integration
 
 - Library の「思考の地図 v2.0」仕様を再確認
