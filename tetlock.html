@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>思考の地図 v3 - Probability Update</title>
+  <link rel="stylesheet" href="./src/styles.css">
+</head>
+<body>
+  <main class="app-shell">
+    <header class="topbar">
+      <div>
+        <p class="eyebrow">Thinking Map v3 / Wave 1</p>
+        <h1>Probability Update</h1>
+      </div>
+      <div class="header-actions">
+        <a class="ghost link-button" href="./wave1.html">Wave 1 一覧</a>
+        <button id="resetBtn" class="ghost">記録をリセット</button>
+      </div>
+    </header>
+
+    <section id="intro" class="card">
+      <h2>「ありそう」を数字にして、新情報で動かす</h2>
+      <p>
+        3つの仮説へ合計100%になるよう確率を配ります。
+        そのあと新しい証拠を見て、もう一度100%を配り直します。
+      </p>
+      <p class="note">
+        最初から正解を当てる競技ではありません。新情報に合わせて、どの程度考えを更新したかを記録します。
+      </p>
+      <button id="startBtn" class="primary">始める</button>
+    </section>
+
+    <section id="initialView" class="hidden">
+      <div class="progress-wrap">
+        <div id="progressText" class="progress-text"></div>
+        <div class="progress-track"><div id="progressBar" class="progress-bar"></div></div>
+      </div>
+      <article class="card">
+        <div class="task-meta"><span id="taskId"></span><span>初期予測</span></div>
+        <h2 id="taskTitle"></h2>
+        <p id="initialText" class="scenario"></p>
+      </article>
+      <article class="card">
+        <h3>今の情報だけで、合計100%になるよう配分</h3>
+        <div id="initialAllocations" class="probability-grid"></div>
+        <div id="initialSum" class="probability-sum"></div>
+        <label for="initialReason">この配分にした理由</label>
+        <textarea id="initialReason" rows="4" placeholder="どの情報を重く見たかを書いてください。"></textarea>
+        <button id="toEvidenceBtn" class="primary">この予測を固定して、新情報を見る</button>
+      </article>
+    </section>
+
+    <section id="updateView" class="hidden">
+      <article class="card">
+        <p class="eyebrow">新しい証拠</p>
+        <h2 id="updateTitle"></h2>
+        <p id="newEvidence" class="scenario"></p>
+      </article>
+      <article class="card">
+        <h3>新情報を含めて、もう一度100%に配分</h3>
+        <div id="updatedAllocations" class="probability-grid"></div>
+        <div id="updatedSum" class="probability-sum"></div>
+        <label for="updateReason">どの情報で確率を動かしましたか？</label>
+        <textarea id="updateReason" rows="4" placeholder="上げた仮説、下げた仮説、その理由を書いてください。"></textarea>
+        <button id="submitBtn" class="primary">更新を確定</button>
+      </article>
+    </section>
+
+    <section id="reviewView" class="hidden">
+      <article class="card">
+        <p class="eyebrow">更新後</p>
+        <h2 id="reviewTitle"></h2>
+        <div id="deltaTable"></div>
+        <details>
+          <summary>この証拠が向ける方向を見る</summary>
+          <div id="explanation" class="reference"></div>
+        </details>
+        <button id="nextBtn" class="primary">次へ</button>
+      </article>
+    </section>
+
+    <section id="resultView" class="hidden">
+      <article class="card">
+        <p class="eyebrow">今回どうだった？</p>
+        <h2>確率更新の試作結果</h2>
+        <div id="summary" class="summary"></div>
+        <div id="taskBreakdown"></div>
+        <p class="note">
+          ここで見るのは「最終確率が唯一の正解値だったか」ではなく、新しい証拠に応じて確率の方向を更新したかです。
+        </p>
+        <button id="restartBtn" class="primary">もう一度やる</button>
+      </article>
+    </section>
+  </main>
+  <script src="./src/tetlock.js" defer></script>
+</body>
+</html>
