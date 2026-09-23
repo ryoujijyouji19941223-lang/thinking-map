@@ -1,0 +1,125 @@
+[
+  {
+    "id": "keil-001",
+    "family": "explain_then_rerate",
+    "primary_construct": ["F1_calibration_bias", "F2_calibration_accuracy"],
+    "secondary_observation": ["B2_semantic_representation"],
+    "process_lens": ["keil_understanding"],
+    "phase": "baseline",
+    "input_modality": "text",
+    "difficulty": {
+      "entity_count": 4,
+      "event_count": 4,
+      "relation_count": 4,
+      "inference_hops": 3,
+      "distractor_count": 0,
+      "irrelevant_information": 0,
+      "lexical_difficulty": 1,
+      "memory_load": 1,
+      "spatial_complexity": 1,
+      "temporal_complexity": 1,
+      "causal_complexity": 2,
+      "perspective_count": 0
+    },
+    "structure_fingerprint": "mechanism|push-latch|toggle-state|4steps",
+    "prompt": {
+      "title": "ノック式ボールペン",
+      "question": "ノック式ボールペンで、上のボタンを一度押すと芯が出たままになり、もう一度押すと芯が戻るのは、内部でどんな仕組みが働いているからだと思いますか？",
+      "instruction": "部品名を知らなくても構いません。『押す → 内部で何が動く → なぜ止まる → 次に押すと何が変わる』を、自分が分かる範囲で順番に説明してください。",
+      "reference_concepts": [
+        "押す力が内部の棒や部品へ伝わる",
+        "内部の部品が位置または向きを切り替える",
+        "ばねが押し戻す力を持つ",
+        "固定される位置と解除される位置が交互に切り替わる"
+      ],
+      "note": "特定製品の内部構造は異なる場合があります。この課題では、細かな部品名ではなく因果的な説明のつながりを見ます。"
+    },
+    "response": {
+      "type": "free_text",
+      "confidence_required": true,
+      "strategy_probe": true
+    }
+  },
+  {
+    "id": "keil-002",
+    "family": "explain_then_rerate",
+    "primary_construct": ["F1_calibration_bias", "F2_calibration_accuracy"],
+    "secondary_observation": ["B2_semantic_representation"],
+    "process_lens": ["keil_understanding"],
+    "phase": "baseline",
+    "input_modality": "text",
+    "difficulty": {
+      "entity_count": 5,
+      "event_count": 5,
+      "relation_count": 5,
+      "inference_hops": 4,
+      "distractor_count": 0,
+      "irrelevant_information": 0,
+      "lexical_difficulty": 1,
+      "memory_load": 1,
+      "spatial_complexity": 1,
+      "temporal_complexity": 1,
+      "causal_complexity": 2,
+      "perspective_count": 0
+    },
+    "structure_fingerprint": "mechanism|electric-kettle|auto-cutoff|steam-sensor",
+    "prompt": {
+      "title": "電気ケトルの自動停止",
+      "question": "電気ケトルは、水が沸騰すると自動で加熱を止めます。水が沸いたことを、ケトルはどのように検知して電源を切ると思いますか？",
+      "instruction": "『加熱 → 水が沸く → 何がセンサー側に伝わる → どうやってスイッチが切れる』という流れを、分かる範囲で説明してください。",
+      "reference_concepts": [
+        "加熱で水が沸騰する",
+        "蒸気または温度変化が検知部へ伝わる",
+        "温度で性質が変わる部品などが作動する",
+        "作動した機構が電気回路を切り加熱を止める"
+      ],
+      "note": "製品ごとに構造差があります。この課題は、一般的な因果の鎖をどこまで組めるかを見る試作です。"
+    },
+    "response": {
+      "type": "free_text",
+      "confidence_required": true,
+      "strategy_probe": true
+    }
+  },
+  {
+    "id": "keil-003",
+    "family": "explain_then_rerate",
+    "primary_construct": ["F1_calibration_bias", "F2_calibration_accuracy"],
+    "secondary_observation": ["B2_semantic_representation"],
+    "process_lens": ["keil_understanding"],
+    "phase": "baseline",
+    "input_modality": "text",
+    "difficulty": {
+      "entity_count": 5,
+      "event_count": 5,
+      "relation_count": 5,
+      "inference_hops": 4,
+      "distractor_count": 0,
+      "irrelevant_information": 0,
+      "lexical_difficulty": 1,
+      "memory_load": 1,
+      "spatial_complexity": 2,
+      "temporal_complexity": 1,
+      "causal_complexity": 2,
+      "perspective_count": 0
+    },
+    "structure_fingerprint": "mechanism|door-closer|fluid-resistance|controlled-return",
+    "prompt": {
+      "title": "ゆっくり閉まるドア",
+      "question": "店や建物のドアには、手を離しても勢いよく閉まらず、ゆっくり元の位置へ戻るものがあります。なぜ一定の速さに近い動きで閉じるのでしょうか？",
+      "instruction": "『ドアを開く → 力をためる → 手を離す → 戻る速さが抑えられる』までを、内部で何が起きていると考えるか順番に説明してください。",
+      "reference_concepts": [
+        "ドアを開くとばね等に戻ろうとする力が蓄えられる",
+        "手を離すとその力がドアを閉じる方向へ働く",
+        "油などの流体が狭い通路を通る抵抗で動きが抑えられる",
+        "戻す力と抵抗の組み合わせで急激に閉じにくくなる"
+      ],
+      "note": "機種により方式は異なります。ここでは一般的な油圧式ドアクローザーを想定しています。"
+    },
+    "response": {
+      "type": "free_text",
+      "confidence_required": true,
+      "strategy_probe": true
+    }
+  }
+]
